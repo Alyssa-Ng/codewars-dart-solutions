@@ -1,0 +1,22 @@
+//https://www.codewars.com/kata/59c633e7dcc4053512000073
+
+int solve(String s) {
+  String alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  List<String> vowels = ['a', 'e', 'i', 'o', 'u'];
+  List<List<int>> consonantValues = [];
+  List<int> temp = [];
+  for(int i = 0; i < s.length; i++){  
+    if(vowels.contains(s[i])){
+      consonantValues.add(temp);
+      temp  = [];
+      continue;
+    }
+    temp.add(alphabet.indexOf(s[i]) + 1);
+    }
+  if(temp.length != 0) consonantValues.add(temp);
+  List<int> result = consonantValues
+              .where((e) => e.length != 0).toList()
+              .map((e) => e.reduce((a,b) => a + b)).toList();
+  result.sort((a,b) => b - a);
+  return result[0];
+}
